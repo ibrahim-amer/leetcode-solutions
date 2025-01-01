@@ -1,27 +1,18 @@
 class Solution {
 public:
     int maxScore(string s) {
-        int n = s.length();
-        int onesCount = 0;
-        for (int i = 0; i < n; i++) {
-            if (s[i] == '1') {
-                onesCount++;
-            }
-        }
+        int leftScore = 0, rightScore = 0, n = s.length();
+
+        for (int i = 0; i < n; i++) rightScore = s[i] == '1' ? (rightScore + 1) : rightScore;
 
         int maxScore = INT_MIN;
-        int zerosCount = 0;
+
         for (int i = 0; i < n - 1; i++) {
-            if (s[i] == '0') {
-                zerosCount++;
-            } else if (s[i] == '1') {
-                onesCount--;
-            }
-            if (zerosCount + onesCount >= maxScore) {
-                maxScore = zerosCount + onesCount;
-            }
+            leftScore = s[i] == '0' ? (leftScore + 1) : leftScore;
+            rightScore = s[i] == '1' ? (rightScore - 1) : rightScore;
+            maxScore = max(maxScore, leftScore + rightScore);
         }
+
         return maxScore;
     }
 };
-
