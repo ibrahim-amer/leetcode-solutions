@@ -14,7 +14,7 @@ public:
             prefixSum[i] = prefixSum[i - 1] + status;
         }
         int i = -1;
-        for (auto& query : queries) {
+        for (auto query : queries) {
             result[++i] = prefixSum[query[1] + 1] - prefixSum[query[0]];
         }
 
