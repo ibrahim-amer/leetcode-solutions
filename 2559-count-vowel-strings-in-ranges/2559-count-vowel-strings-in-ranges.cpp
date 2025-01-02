@@ -13,9 +13,6 @@ public:
             int status = vowels.count(words[i - 1][0]) && vowels.count(words[i - 1][wordLen - 1]) ? 1 : 0;
             prefixSum[i] = prefixSum[i - 1] + status;
         }
-        for (auto num : prefixSum) {
-            cout << num << " ";
-        }
         cout << endl;
         int i = -1;
         for (auto query : queries) {
